@@ -3,3 +3,5 @@
 jose fernando ramirez ortiz - 20241020080
 
 Joel David Pérez Arroyave - 20242020017
+
+Carlos Alberto Barriga Gamez 20222020179
