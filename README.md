@@ -6,4 +6,4 @@ Joel David Pérez Arroyave - 20242020017
 
 Carlos Alberto Barriga Gamez - 20222020179
 
-Miguel Ángel Hernández Medina - 
+Miguel Ángel Hernández Medina - 20222020035
