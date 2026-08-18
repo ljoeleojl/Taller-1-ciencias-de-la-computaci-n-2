@@ -53,7 +53,7 @@ public class ArbolBMas {
         return -(r + 1);
     }
 
-    // ---------------------------- INSERCION ----------------------------
+    //INSERCION
 
     void insertar(int clave) {
         if (buscarClave(clave)) {
@@ -128,7 +128,7 @@ public class ArbolBMas {
         return new Promocion(claveCopia, nueva);
     }
 
-    // ---------------------------- BUSQUEDA ----------------------------
+    //BUSQUEDA
 
     boolean buscarClave(int clave) {
         Nodo n = raiz;
@@ -159,10 +159,7 @@ public class ArbolBMas {
         return r;
     }
 
-    // ---------------------------- ELIMINACION ----------------------------
-    // Los datos reales solo viven en las hojas, asi que ahi es donde se borra de verdad.
-    // Si una hoja (o un nodo interno) queda por debajo del minimo, primero se intenta pedir
-    // prestado a un hermano; si ninguno puede prestar, se fusionan.
+    //ELIMINACION
 
     void eliminar(int clave) {
         boolean existia = buscarClave(clave);
@@ -254,18 +251,7 @@ public class ArbolBMas {
         }
     }
 
-    // ---------------------------- VISUALIZACION ----------------------------
-
-    void mostrar() {
-        Nodo n = raiz;
-        while (!n.esHoja) n = n.hijos.get(0);
-        System.out.print("Arbol B+ (hojas enlazadas): ");
-        while (n != null) {
-            for (int c : n.claves) System.out.print(c + " ");
-            n = n.siguienteHoja;
-        }
-        System.out.println();
-    }
+    //MOSTRAR
 
     void mostrarEstructura() {
         System.out.println("Estructura por niveles:");
@@ -285,9 +271,7 @@ public class ArbolBMas {
             for (Nodo hijo : n.hijos) mostrarEstructura(hijo, nivel + 1);
         }
     }
-
-    // ---------------------------- ENTRADA VALIDADA ----------------------------
-
+    
     static int leerEntero(Scanner sc, String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -318,18 +302,16 @@ public class ArbolBMas {
 
         int opcion;
         do {
-            System.out.println("\n1. Insertar  2. Eliminar  3. Buscar  4. Mostrar  5. Ver estructura  0. Salir");
+            System.out.println("\n1. Insertar  2. Eliminar  3. Buscar  4. Ver estructura  0. Salir");
             opcion = leerEntero(sc, "Opcion: ");
             switch (opcion) {
                 case 1:
                     int c1 = leerEntero(sc, "Clave (int): ");
                     arbol.insertar(c1);
-                    arbol.mostrar();
                     break;
                 case 2:
                     int c2 = leerEntero(sc, "Clave a eliminar: ");
                     arbol.eliminar(c2);
-                    arbol.mostrar();
                     break;
                 case 3:
                     int c3 = leerEntero(sc, "Clave a buscar: ");
@@ -343,9 +325,6 @@ public class ArbolBMas {
                     }
                     break;
                 case 4:
-                    arbol.mostrar();
-                    break;
-                case 5:
                     arbol.mostrarEstructura();
                     break;
                 case 0:
