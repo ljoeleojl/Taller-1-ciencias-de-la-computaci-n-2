@@ -44,7 +44,7 @@ public class ArbolB {
         return -(r + 1);
     }
 
-    // ---------------------------- INSERCION ----------------------------
+    //INSERCION
 
     void insertar(int clave) {
         if (buscarClave(clave) != null) {
@@ -104,7 +104,7 @@ public class ArbolB {
         return new Promocion(claveMedia, nuevo);
     }
 
-    // ---------------------------- BUSQUEDA ----------------------------
+    //BUSQUEDA
 
     Integer buscarClave(int clave) {
         Nodo n = raiz;
@@ -143,11 +143,7 @@ public class ArbolB {
         return buscar(n.hijos.get(-(idx + 1)), clave, nivel + 1);
     }
 
-    // ---------------------------- ELIMINACION ----------------------------
-    // Politica del SUCESOR: al borrar una clave interna se reemplaza con la clave mas
-    // pequena del subarbol derecho (el mas a la izquierda de ese subarbol).
-    // Si tras eliminar un nodo queda por debajo del minimo, primero intenta pedir
-    // prestado a un hermano; si ninguno puede prestar, se fusionan.
+    //ELIMINACION
 
     void eliminar(int clave) {
         boolean existia = buscarClave(clave) != null;
@@ -210,7 +206,7 @@ public class ArbolB {
         }
     }
 
-    // Rota: el separador baja al hijo, la ultima clave del hermano izquierdo sube al separador
+    // Rotación: el separador baja al hijo, la ultima clave del hermano izquierdo sube al separador
     void prestarDeIzquierda(Nodo n, int idx) {
         Nodo hijo = n.hijos.get(idx);
         Nodo izq = n.hijos.get(idx - 1);
@@ -221,7 +217,7 @@ public class ArbolB {
         n.claves.set(idx - 1, izq.claves.remove(izq.claves.size() - 1));
     }
 
-    // Rota: el separador baja al hijo, la primera clave del hermano derecho sube al separador
+    // Rotación: el separador baja al hijo, la primera clave del hermano derecho sube al separador
     void prestarDeDerecha(Nodo n, int idx) {
         Nodo hijo = n.hijos.get(idx);
         Nodo der = n.hijos.get(idx + 1);
@@ -244,23 +240,7 @@ public class ArbolB {
         n.hijos.remove(idx + 1);
     }
 
-    // ---------------------------- VISUALIZACION ----------------------------
-
-    void mostrar() {
-        System.out.print("Arbol B (in-order): ");
-        mostrar(raiz);
-        System.out.println();
-    }
-
-    void mostrar(Nodo n) {
-        if (n == null) return;
-        for (int i = 0; i < n.claves.size(); i++) {
-            if (!n.esHoja) mostrar(n.hijos.get(i));
-            System.out.print(n.claves.get(i) + " ");
-        }
-        if (!n.esHoja) mostrar(n.hijos.get(n.claves.size()));
-    }
-
+    //MOSTRAR
     void mostrarEstructura() {
         System.out.println("Estructura por niveles:");
         mostrarEstructura(raiz, 0);
@@ -279,9 +259,7 @@ public class ArbolB {
             for (Nodo hijo : n.hijos) mostrarEstructura(hijo, nivel + 1);
         }
     }
-
-    // ---------------------------- ENTRADA VALIDADA ----------------------------
-
+    
     static int leerEntero(Scanner sc, String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -312,18 +290,16 @@ public class ArbolB {
 
         int opcion;
         do {
-            System.out.println("\n1. Insertar  2. Eliminar  3. Buscar  4. Mostrar  5. Ver estructura  0. Salir");
+            System.out.println("\n1. Insertar  2. Eliminar  3. Buscar  4. Ver estructura  0. Salir");
             opcion = leerEntero(sc, "Opcion: ");
             switch (opcion) {
                 case 1:
                     int c1 = leerEntero(sc, "Clave (int): ");
                     arbol.insertar(c1);
-                    arbol.mostrar();
                     break;
                 case 2:
                     int c2 = leerEntero(sc, "Clave a eliminar: ");
                     arbol.eliminar(c2);
-                    arbol.mostrar();
                     break;
                 case 3:
                     int c3 = leerEntero(sc, "Clave a buscar: ");
@@ -337,9 +313,6 @@ public class ArbolB {
                     }
                     break;
                 case 4:
-                    arbol.mostrar();
-                    break;
-                case 5:
                     arbol.mostrarEstructura();
                     break;
                 case 0:
